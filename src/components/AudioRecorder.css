@@ -1,0 +1,152 @@
+.audio-recorder {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+
+.recorder-status {
+  margin-bottom: 20px;
+}
+
+.status-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.status-message.loading {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-message.transcribing {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.status-message.recording {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.status-message.ready {
+  background: #d4edda;
+  color: #155724;
+}
+
+.recording-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #dc3545;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.recording-indicator.paused {
+  background: #ffc107;
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.recorder-controls {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-danger {
+  background: #dc3545;
+  color: white;
+}
+
+.btn-large {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+}
+
+.btn-icon {
+  font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+  .audio-recorder {
+    padding: 20px;
+  }
+
+  .recorder-controls {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
