@@ -2,6 +2,21 @@
 
 A powerful local AI-powered meeting note taker desktop application that transcribes your meetings in real-time using Whisper AI. All processing happens on your device - no internet required, complete privacy!
 
+---
+
+## 👥 Are you a user or developer?
+
+- **🎯 End User?** (Want to download and install the app)
+  - **[📥 Download Installers](#-download-for-end-users)** - Get the app for Windows, macOS, or Linux
+  - **[📖 Installation Guide](INSTALLATION_GUIDE.md)** - Step-by-step instructions for users
+
+- **👨‍💻 Developer?** (Want to build or modify the app)
+  - **[🛠️ Development Setup](#-development-setup)** - Get started developing
+  - **[📦 Build Guide](BUILD_GUIDE.md)** - Create installers for distribution
+  - **[🚀 Release Guide](RELEASE.md)** - Quick checklist for releasing
+
+---
+
 ## ✨ Features
 
 - **🔒 100% Local Processing**: All AI transcription happens on your device. No data is sent to external servers.
@@ -13,14 +28,44 @@ A powerful local AI-powered meeting note taker desktop application that transcri
 - **⏱️ Timestamped Notes**: Each transcript segment includes the time it was recorded.
 - **🎨 Modern Design**: Clean, professional interface with smooth animations.
 
-## 🚀 Getting Started
+## 📥 Download for End Users
+
+**Ready-to-use installers** for non-technical users:
+
+### Windows
+Download: `MeetingNote-Setup-1.0.0.exe` (~80MB)
+- Double-click to install
+- Follow the installation wizard
+- App appears in Start Menu
+
+### macOS
+Download: `MeetingNote-1.0.0.dmg` (~90MB)
+- Open the DMG file
+- Drag to Applications folder
+- Open from Applications
+
+### Linux
+Download: `MeetingNote-1.0.0.AppImage` (~90MB) or `.deb` package
+- Make executable and run (AppImage)
+- Or install via package manager (.deb)
+
+**📖 Need help installing?** See the **[Installation Guide](INSTALLATION_GUIDE.md)** for detailed instructions.
+
+**Note:** Download links will be available after the first release is built. See [Build Guide](BUILD_GUIDE.md) to create installers.
+
+---
+
+## 🛠️ Development Setup
+
+For developers who want to modify or build the application:
 
 ### Prerequisites
 
 - Node.js 18 or higher
 - npm or yarn package manager
+- Git
 
-### Installation
+### Quick Start
 
 1. Clone the repository:
 ```bash
@@ -33,12 +78,30 @@ cd meetingnote
 npm install
 ```
 
-3. Start the development server:
+3. Start development mode:
 ```bash
 npm run dev
 ```
 
-The application will open in development mode. The first time you run it, the Whisper AI model will be downloaded (approximately 40MB for the tiny model).
+The application will open in development mode. The Whisper AI model (~40MB) downloads automatically on first launch.
+
+### Building Installers
+
+To create distributable packages:
+
+```bash
+# Build for your current platform
+npm run package
+
+# Or build for specific platforms
+npm run package:win     # Windows
+npm run package:mac     # macOS
+npm run package:linux   # Linux
+```
+
+Installers appear in the `release/` folder.
+
+**📦 For detailed build instructions**, see **[BUILD_GUIDE.md](BUILD_GUIDE.md)**
 
 ## 🎯 Usage
 
@@ -49,14 +112,34 @@ The application will open in development mode. The first time you run it, the Wh
 5. **Save Notes**: Click the "Save" button to export your meeting notes to a file.
 6. **Copy to Clipboard**: Use the "Copy" button to quickly copy all transcripts.
 
-## 🛠️ Development
+## 🛠️ For Developers
 
 ### Available Scripts
 
-- `npm run dev` - Start development mode with hot reload
-- `npm run build` - Build the application for production
-- `npm run package` - Create distributable packages for your platform
-- `npm start` - Run the built application
+```bash
+# Development
+npm run dev              # Start with hot reload
+npm run start            # Run built application
+
+# Building
+npm run build            # Build all components
+npm run build:renderer   # Build React frontend only
+npm run build:main       # Build Electron main process only
+npm run build:preload    # Build preload script only
+
+# Distribution
+npm run package          # Create installer for current platform
+npm run package:win      # Create Windows installer
+npm run package:mac      # Create macOS installer
+npm run package:linux    # Create Linux installers
+npm run package:all      # Create all installers (macOS only)
+```
+
+### Documentation
+
+- **[BUILD_GUIDE.md](BUILD_GUIDE.md)** - Complete guide to building distributable installers
+- **[RELEASE.md](RELEASE.md)** - Quick checklist for creating releases
+- **[build/README.md](build/README.md)** - Instructions for creating application icons
 
 ### Project Structure
 
@@ -102,18 +185,52 @@ pipelineRef.current = await pipeline(
 );
 ```
 
-## 📦 Building for Distribution
+## 📦 Distributing to Non-Technical Users
 
-Build executable packages for your platform:
+### Quick Summary
 
+Non-technical users don't need Node.js, npm, or any development tools. Just:
+
+1. **You (developer)** build the installers once using `npm run package`
+2. **Users** download and double-click the installer (`.exe`, `.dmg`, or `.AppImage`)
+3. **Users** use the app like any other desktop application
+
+### Step-by-Step Distribution Process
+
+**1. Build the Installers (You do this once):**
 ```bash
+# Install dependencies (first time only)
+npm install
+
+# Build installers for your platform
 npm run package
+
+# Or build for specific platforms:
+npm run package:win     # Creates .exe for Windows
+npm run package:mac     # Creates .dmg for macOS
+npm run package:linux   # Creates .AppImage and .deb for Linux
 ```
 
-This will create distributable files in the `release/` directory:
-- **macOS**: `.dmg` installer
-- **Windows**: `.exe` installer
-- **Linux**: `.AppImage` file
+**2. Upload installers** (from `release/` folder) to:
+- GitHub Releases
+- Google Drive
+- Dropbox
+- Your website
+- Any file hosting service
+
+**3. Share download links** with users along with the [Installation Guide](INSTALLATION_GUIDE.md)
+
+**4. Users install** by simply:
+- **Windows**: Double-clicking the `.exe` file
+- **macOS**: Opening the `.dmg` and dragging to Applications
+- **Linux**: Making `.AppImage` executable or installing `.deb`
+
+**No technical knowledge required from users!** ✅
+
+For complete instructions, see:
+- **[BUILD_GUIDE.md](BUILD_GUIDE.md)** - How to build installers
+- **[INSTALLATION_GUIDE.md](INSTALLATION_GUIDE.md)** - Share with end users
+- **[RELEASE.md](RELEASE.md)** - Quick release checklist
 
 ## 🔒 Privacy & Security
 

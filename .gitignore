@@ -8,8 +8,11 @@ coverage/
 
 # Production
 dist/
-build/
 release/
+
+# Build assets (but keep README)
+build/*
+!build/README.md
 
 # Misc
 .DS_Store
